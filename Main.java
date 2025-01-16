@@ -10,4 +10,15 @@ class Node {
         this.next = null; // initialize reference to be null
     }
 
+   
+
+    public static void main(String [] args ) {
+         //create node instance
+        Node node1 = new Node(10);
+        Node node2 = new Node(20);
+        System.out.println(node1.data);
+        System.out.println(node2.data);
+
+    }
+
 }
