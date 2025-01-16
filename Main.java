@@ -1,24 +1,57 @@
 package LinkedList;
 
+// Define the Node class
 class Node {
-    int data; // to store int data in this case (can be any data types)
-    Node next; // pointer of type node to hold refernce to next node in the sequence
+    int data;       // Data stored in the node
+    Node next;      // Reference to the next node
 
-    //constructor to ceate instance of Node 
-    Node (int data) {
-        this.data = data; // set the data to whatever the data is passed in from parameter
-        this.next = null; // initialize reference to be null
+    // Constructor to initialize the node
+    public Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+// Define the LinkedList class
+class LinkedList {
+    Node head; // Head of the linked list
+
+    // Add a new node to the end of the linked list
+    public void add(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode; // If the list is empty, make the new node the head
+        } else {
+            Node current = head;
+            while (current.next != null) { // Traverse to the end of the list
+                current = current.next;
+            }
+            current.next = newNode; // Link the new node
+        }
     }
 
-   
-
-    public static void main(String [] args ) {
-         //create node instance
-        Node node1 = new Node(10);
-        Node node2 = new Node(20);
-        System.out.println(node1.data);
-        System.out.println(node2.data);
-
+    // Display the linked list
+    public void display() {
+        Node current = head;
+        while (current != null) {
+            System.out.print(current.data + " -> ");
+            current = current.next;
+        }
+        System.out.println("null");
     }
+}
 
+// Main class to test the LinkedList
+public class Main {
+    public static void main(String[] args) {
+        LinkedList list = new LinkedList();
+
+        // Add nodes to the list
+        list.add(10);
+        list.add(20);
+        list.add(30);
+
+        // Display the list
+        list.display();
+    }
 }
