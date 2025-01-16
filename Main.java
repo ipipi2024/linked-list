@@ -14,20 +14,36 @@ class Node {
 
 // Define the LinkedList class
 class LinkedList {
-    Node head; // Head of the linked list
+    Node head; // Head of the linked list - right now it just a reference to the head
+    Node tail;; // Tail of the lined list - right now it just a reference to the tail
+    int size = 0; //store the size of link list
 
     // Add a new node to the end of the linked list
     public void add(int data) {
-        Node newNode = new Node(data);
-        if (head == null) {
-            head = newNode; // If the list is empty, make the new node the head
-        } else {
-            Node current = head;
-            while (current.next != null) { // Traverse to the end of the list
-                current = current.next;
-            }
-            current.next = newNode; // Link the new node
+        Node newest = new Node(data);
+
+        //we can set newest next pointer to null since it will now
+        //become the last node in linklist
+        newest.next = null;
+        //lets first check if the node is empty or not
+        if(head == null) {
+            // if head is null than it means there is no node connected so
+            //we let head point to the newest and becomes the first node
+            head = newest;
+            
+           
+        }else{
+            //if it has 1 more node
+            //set tails next to the newest node
+            tail.next = newest;
+
+            //set the tail to point to the newest so
+            //it becomes the last elment
+           
         }
+        tail = newest; //we can set the tail to point to the newest so it become the newest
+        size++;
+       
     }
 
     // Display the linked list
@@ -45,13 +61,15 @@ class LinkedList {
 public class Main {
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
-
-        // Add nodes to the list
-        list.add(10);
+        list.add(19);
         list.add(20);
-        list.add(30);
+        list.add(31);
+        list.add(50);
+        System.out.println(list.head.data);
+        System.out.println(list.head.next.data);
+        System.out.println(list.head.next.next.data);
+        System.out.println(list.head.next.next.next.data);
+        System.out.println("Size: " + list.size);
 
-        // Display the list
-        list.display();
     }
 }
