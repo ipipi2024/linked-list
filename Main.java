@@ -19,7 +19,7 @@ class LinkedList {
     int size = 0; //store the size of link list
 
     // Add a new node to the end of the linked list
-    public void add(int data) {
+    public void addAtEnd(int data) {
         Node newest = new Node(data);
 
         //we can set newest next pointer to null since it will now
@@ -46,6 +46,14 @@ class LinkedList {
        
     }
 
+    //At the beginning or start
+    public void addAtStart(int data) {
+        Node newest = new Node(data);
+        newest.next = head;
+        head = newest;
+        size++;
+    }
+
     // Display the linked list
     public void display() {
         Node current = head;
@@ -61,14 +69,16 @@ class LinkedList {
 public class Main {
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
-        list.add(19);
-        list.add(20);
-        list.add(31);
-        list.add(50);
-        System.out.println(list.head.data);
-        System.out.println(list.head.next.data);
-        System.out.println(list.head.next.next.data);
-        System.out.println(list.head.next.next.next.data);
+        //adding at the end
+        list.addAtEnd(19);
+        list.addAtEnd(20);
+        list.addAtEnd(31);
+        list.addAtEnd(50);
+
+        //adding at the start
+        list.addAtStart(10);
+
+        list.display();
         System.out.println("Size: " + list.size);
 
     }
