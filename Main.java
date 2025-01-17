@@ -24,12 +24,13 @@ class LinkedList {
 
         //we can set newest next pointer to null since it will now
         //become the last node in linklist
-        newest.next = null;
+        // newest.next = null; We dont need to do this becuause it has been already initialize when instance was created
         //lets first check if the node is empty or not
         if(head == null) {
             // if head is null than it means there is no node connected so
             //we let head point to the newest and becomes the first node
             head = newest;
+            tail = newest;
             
            
         }else{
@@ -48,11 +49,37 @@ class LinkedList {
 
     //At the beginning or start
     public void addAtStart(int data) {
+        //create a new node
         Node newest = new Node(data);
+        //set the next pointer of new node to current head
         newest.next = head;
+        //set the current head pointer to point to newest node
         head = newest;
+        //increment the size of link list 
         size++;
     }
+
+    //How to remove node at the begining
+    public int removeAtStart() {
+        int removedInt = head.data;
+        head = head.next;
+        // head.next = null; //taken care of by garbage collector
+        return removedInt;
+        
+    }
+
+    public int removeAtEnd() {
+        int removedInt = tail.data;
+        Node current = head;
+        while (current.next != tail) {
+            current = current.next;
+        }
+        tail = current;
+        current.next = null;
+        return removedInt;
+    }
+
+    
 
     // Display the linked list
     public void display() {
@@ -69,17 +96,19 @@ class LinkedList {
 public class Main {
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
-        //adding at the end
-        list.addAtEnd(19);
+        list.addAtEnd(10);
         list.addAtEnd(20);
-        list.addAtEnd(31);
-        list.addAtEnd(50);
-
-        //adding at the start
-        list.addAtStart(10);
-
+        list.addAtEnd(30);
+        list.addAtStart(40);
+        list.addAtStart(50);
+       
         list.display();
-        System.out.println("Size: " + list.size);
-
+        int removedInt = list.removeAtStart();
+        System.out.println(removedInt);
+        list.display();
+        removedInt = list.removeAtEnd();
+        System.out.println(removedInt);
+        list.display();
+       
     }
 }
